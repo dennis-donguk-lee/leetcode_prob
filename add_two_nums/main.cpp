@@ -1,3 +1,16 @@
+#include <iostream>
+using namespace std;
+/*
+Definition of singly-linked list.
+*/
+struct ListNode {
+    int val;
+    ListNode *next;
+    ListNode() : val(0), next(nullptr) {} 
+    ListNode(int x) : val(x), next(nullptr) {}
+    ListNode(int x, ListNode *next) : val(x), next(next) {}
+};
+
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -92,3 +105,36 @@ public:
 
     }
 };
+
+
+void print_LL(ListNode *node) {
+    while(node != nullptr) {
+        cout << node->val << " -> " ;
+        node = node->next;
+    }
+    cout << endl;
+}
+
+
+int main() {
+    
+    ListNode *l1_3 = new ListNode(3); 
+    ListNode *l1_2 = new ListNode(4, l1_3);
+    ListNode *l1_1 = new ListNode(2, l1_2);
+    cout << "LL1: ";
+    print_LL(l1_1);
+    
+    ListNode *l2_3 = new ListNode(4); 
+    ListNode *l2_2 = new ListNode(6, l2_3); 
+    ListNode *l2_1 = new ListNode(5, l2_2);
+    cout << "LL2: ";
+    print_LL(l2_1);
+
+
+    Solution s; 
+    ListNode *result; 
+    result = s.addTwoNumbers(l1_1, l2_1); 
+    print_LL(result); 
+       
+    return 0; 
+}
