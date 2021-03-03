@@ -1,0 +1,7 @@
+6
+us can 2
+can us 2
+mex us 5
+can mex 7
+us can 4
+us mex 4
