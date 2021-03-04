@@ -4,29 +4,26 @@
 
 // FUNCTION SIGNATURE BEGINS, THIS FUNCTION IS REQUIRED
 using namespace std;
+
+int gcd(int a, int b) {
+  if (b == 0) {
+    return a;
+  }
+
+  return gcd(b, a%b);
+}
+
 int generalizedGCD(int* arr,int len) {
+  int res = arr[0];
+  for (int i = 1; i < len; ++i) {
+    res = gcd(arr[i], res);
 
-  set<int, greater<>> diffs;
-  for (int i = 0; i < len-1; ++i) {
-    diffs.insert(arr[i + 1] - arr[i]);
+    if (res == 1) {
+      return 1;
+    }
   }
 
-  bool isGCD = true;
-  for (auto diff : diffs) {
-    for (int i = 0; i < len; ++i) {
-      if (arr[i] % diff) {
-        isGCD = false;
-        break;
-      }
-    }
-
-    if (isGCD) {
-      return diff;
-    }
-    isGCD = true;
-  }
-
-  return 1;
+  return res;
 }
 // FUNCTION SIGNATURE ENDS
 
