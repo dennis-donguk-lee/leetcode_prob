@@ -21,6 +21,7 @@ class Solution {
 public:
   int minMeetingRooms(std::vector<std::vector<int>>& intervals) {
 
+    // sort intervals w/ start time (could sort the passed param to save space)
     // Using lambda to compare elements.
     auto cmp = [](std::vector<int> left, std::vector<int> right) {
       if (left[0] == right[0]) { return left[1] < right[1]; }
@@ -33,10 +34,11 @@ public:
       sortedIntervals.push(interval);
     }
 
+    // min-heap for end times
     std::priority_queue< int, std::vector<int>, std::greater<> > sortedEndTimes;
 
+    // rm scheduling by checking earliest end time
     while (!sortedIntervals.empty()) {
-
       int currStart = sortedIntervals.top()[0];
       int currEnd = sortedIntervals.top()[1];
       sortedIntervals.pop();
@@ -47,6 +49,7 @@ public:
       sortedEndTimes.push(currEnd);
     }
 
+    // return alloc'ed meeting rms
     return sortedEndTimes.size();
   }
 };
